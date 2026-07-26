@@ -50,10 +50,12 @@ data-callback="captchaSuccess">
 
 
 <script>
+let captchaOK = false;
+
 window.captchaSuccess = function(token){
     captchaOK = true;
     document.getElementById("submitBtn").disabled = false;
-}
+  }
 
 document.getElementById("submitBtn").onclick = async function(){
 
@@ -64,5 +66,5 @@ document.getElementById("submitBtn").onclick = async function(){
 
     await window.submitAPK();
 }
-  </script>
+      </script>
 </html>
