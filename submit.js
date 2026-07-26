@@ -14,28 +14,16 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 window.submitAPK = async function () {
-
-  const token = turnstile.getResponse();
-
-  if (!token) {
-    alert("Please complete the CAPTCHA first.");
-    return;
-  }
-
   try {
     await addDoc(collection(db, "Submissions"), {
       name: document.getElementById("name").value,
       version: document.getElementById("version").value,
       link: document.getElementById("link").value,
       note: document.getElementById("note").value,
-      captcha: token,
       time: Date.now()
     });
 
     document.getElementById("status").innerHTML = "✅ Submitted successfully!";
-
-    turnstile.reset();
-
   } catch (e) {
     document.getElementById("status").innerHTML = "❌ Error: " + e.message;
     console.log(e);
