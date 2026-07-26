@@ -44,13 +44,11 @@ data-callback="captchaSuccess">
 
 
 <button id="submitBtn" disabled>Submit</button>
-
-<p id="status"></p>
-
 <script type="module" src="submit.js"></script>
 </body>
+<p id="status"></p>
 
-</html>
+
 <script>
 window.captchaSuccess = function(token){
     captchaOK = true;
@@ -67,4 +65,4 @@ document.getElementById("submitBtn").onclick = async function(){
     await window.submitAPK();
 }
   </script>
-  
+</html>
