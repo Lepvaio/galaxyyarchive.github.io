@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
+  <title>Submit APK</title>
 </head>
 <body>
   <!DOCTYPE html>
@@ -21,7 +21,7 @@
 <h1>Submit APK</h1>
 
 <h2>Use your modern device to be able to submit APK.</h2>
-  
+
 <p>Game Name</p>
 <input id="name">
 
@@ -52,9 +52,7 @@ data-callback="captchaSuccess">
 
 </html>
 <script>
-let captchaOK = false;
-
-function captchaSuccess(token){
+window.captchaSuccess = function(token){
     captchaOK = true;
     document.getElementById("submitBtn").disabled = false;
 }
@@ -66,7 +64,7 @@ document.getElementById("submitBtn").onclick = async function(){
         return;
     }
 
-    // Code Firebase của bro ở đây
-    alert("Submitted!");
+    await window.submitAPK();
 }
-</script>
+  </script>
+  
