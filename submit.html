@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+  <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Submit APK</title>
+</head>
+
+<body>
+
+<a href="index.html">← Home</a>
+
+<h1>Submit APK</h1>
+
+<p>Game Name</p>
+<input id="name">
+
+<p>Version</p>
+<input id="version">
+
+<p>Download Link</p>
+<input id="link">
+
+<p>Notes</p>
+<textarea id="note"></textarea>
+
+<br><br>
+<div class="cf-turnstile"
+data-sitekey="0x4AAAAAAD-KiHEUmm5rOH1F"
+data-callback="captchaSuccess">
+</div>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+
+<button id="submitBtn" disabled>Submit</button>
+
+<p id="status"></p>
+
+<script type="module" src="submit.js"></script>
+</body>
+
+</html>
+<script>
+let captchaOK = false;
+
+function captchaSuccess(token){
+    captchaOK = true;
+    document.getElementById("submitBtn").disabled = false;
+}
+
+document.getElementById("submitBtn").onclick = async function(){
+
+    if(!captchaOK){
+        alert("Please complete the CAPTCHA first.");
+        return;
+    }
+
+    // Code Firebase của bro ở đây
+    alert("Submitted!");
+}
+</script>
