@@ -37,6 +37,7 @@ document.getElementById("note").value = "";
 setTimeout(function(){
     location.reload();
 },1000);
+    
     document.getElementById("status").innerHTML = "❌ Error: " + e.message;
     console.log(e);
   }
