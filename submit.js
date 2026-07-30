@@ -24,7 +24,19 @@ window.submitAPK = async function () {
     });
 
     document.getElementById("status").innerHTML = "✅ Submitted successfully!";
-  } catch (e) {
+
+turnstile.reset();
+
+// Xóa dữ liệu đã nhập
+document.getElementById("name").value = "";
+document.getElementById("version").value = "";
+document.getElementById("link").value = "";
+document.getElementById("note").value = "";
+
+// Reload sau 1 giây
+setTimeout(function(){
+    location.reload();
+},1000);
     document.getElementById("status").innerHTML = "❌ Error: " + e.message;
     console.log(e);
   }
