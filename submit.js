@@ -15,37 +15,40 @@ const db = getFirestore(app);
 
 window.submitAPK = async function () {
 
-  try {
+  const token = turnstile.getResponse();
 
+  if (!token) {
+    alert("Please complete the CAPTCHA first.");
+    return;
+  }
+
+  try {
     await addDoc(collection(db, "Submissions"), {
       name: document.getElementById("name").value,
       version: document.getElementById("version").value,
       link: document.getElementById("link").value,
       note: document.getElementById("note").value,
+      captcha: token,
       time: Date.now()
     });
 
-    document.getElementById("status").innerHTML =
-      "✅ Submitted successfully!";
+    document.getElementById("status").innerHTML = "✅ Submitted successfully!";
 
-    turnstile.reset();
+turnstile.reset();
 
-    document.getElementById("name").value = "";
-    document.getElementById("version").value = "";
-    document.getElementById("link").value = "";
-    document.getElementById("note").value = "";
+// Xóa dữ liệu đã nhập
+document.getElementById("name").value = "";
+document.getElementById("version").value = "";
+document.getElementById("link").value = "";
+document.getElementById("note").value = "";
 
-    setTimeout(function () {
-      location.reload();
-    }, 1000);
+// Reload sau 1 giây
+setTimeout(function(){
+    location.reload();
+},1000);
 
   } catch (e) {
-
-    document.getElementById("status").innerHTML =
-      "❌ Error: " + e.message;
-
+    document.getElementById("status").innerHTML = "❌ Error: " + e.message;
     console.log(e);
-
   }
-
 };
